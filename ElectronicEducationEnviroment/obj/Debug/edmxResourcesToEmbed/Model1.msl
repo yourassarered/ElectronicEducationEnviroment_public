@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище EEEModelContainer" CdmEntityContainer="EEEEntities">
+    <EntitySetMapping Name="AssignmentAnswers">
+      <EntityTypeMapping TypeName="EEEModel.AssignmentAnswers">
+        <MappingFragment StoreEntitySet="AssignmentAnswers">
+          <ScalarProperty Name="submission_date" ColumnName="submission_date" />
+          <ScalarProperty Name="answer_text" ColumnName="answer_text" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="id_assignment" ColumnName="id_assignment" />
+          <ScalarProperty Name="id_answer" ColumnName="id_answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assignments">
+      <EntityTypeMapping TypeName="EEEModel.Assignments">
+        <MappingFragment StoreEntitySet="Assignments">
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="open_date" ColumnName="open_date" />
+          <ScalarProperty Name="assignment_text" ColumnName="assignment_text" />
+          <ScalarProperty Name="assignment_title" ColumnName="assignment_title" />
+          <ScalarProperty Name="id_assignment" ColumnName="id_assignment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseParticipants">
+      <EntityTypeMapping TypeName="EEEModel.CourseParticipants">
+        <MappingFragment StoreEntitySet="CourseParticipants">
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="EEEModel.Courses">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="course_description" ColumnName="course_description" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="EEEModel.Grades">
+        <MappingFragment StoreEntitySet="Grades">
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="id_assignment" ColumnName="id_assignment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="EEEModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="group_code" ColumnName="group_code" />
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lectures">
+      <EntityTypeMapping TypeName="EEEModel.Lectures">
+        <MappingFragment StoreEntitySet="Lectures">
+          <ScalarProperty Name="lecture_text" ColumnName="lecture_text" />
+          <ScalarProperty Name="lecture_title" ColumnName="lecture_title" />
+          <ScalarProperty Name="id_lecture" ColumnName="id_lecture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="EEEModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EEEModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CourseTeachers" TypeName="EEEModel.CourseTeachers" StoreEntitySet="CourseTeachers">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="id_user" ColumnName="id_teacher" />
+      </EndProperty>
+      <EndProperty Name="Courses">
+        <ScalarProperty Name="id_course" ColumnName="id_course" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupMembers" TypeName="EEEModel.GroupMembers" StoreEntitySet="GroupMembers">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="id_user" ColumnName="id_student" />
+      </EndProperty>
+      <EndProperty Name="Groups">
+        <ScalarProperty Name="id_group" ColumnName="id_group" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LectureAccess" TypeName="EEEModel.LectureAccess" StoreEntitySet="LectureAccess">
+      <EndProperty Name="Lectures">
+        <ScalarProperty Name="id_lecture" ColumnName="id_lecture" />
+      </EndProperty>
+      <EndProperty Name="Groups">
+        <ScalarProperty Name="id_group" ColumnName="id_group" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

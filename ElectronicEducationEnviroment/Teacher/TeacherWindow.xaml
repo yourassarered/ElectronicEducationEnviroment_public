@@ -1,0 +1,19 @@
+﻿<Window x:Class="ElectronicEducationEnviroment.Teacher.TeacherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectronicEducationEnviroment.Teacher"
+        mc:Ignorable="d"
+        Title="TeacherWindow" Height="550" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        <Frame Name="Frame" Navigated="Frame_Navigated" NavigationUIVisibility="Visible"/>
+        <Button Name="ExitBtn" VerticalAlignment="Bottom" Click="ExitBtn_Click" Grid.Row="1">Выйти</Button>
+    </Grid>
+
+</Window>

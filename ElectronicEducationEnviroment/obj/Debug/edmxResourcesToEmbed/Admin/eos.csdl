@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ElectronicEducationEnviromentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ElectronicEducationEnviromentEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ElectronicEducationEnviromentModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ElectronicEducationEnviromentModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="AssignmentAnswers" EntityType="ElectronicEducationEnviromentModel.AssignmentAnswer" />
+    <EntitySet Name="AssignmentFiles" EntityType="ElectronicEducationEnviromentModel.AssignmentFile" />
+    <EntitySet Name="Assignments" EntityType="ElectronicEducationEnviromentModel.Assignment" />
+    <EntitySet Name="CourseParticipants" EntityType="ElectronicEducationEnviromentModel.CourseParticipant" />
+    <EntitySet Name="Courses" EntityType="ElectronicEducationEnviromentModel.Cours" />
+    <EntitySet Name="CourseTeachers" EntityType="ElectronicEducationEnviromentModel.CourseTeacher" />
+    <EntitySet Name="Grades" EntityType="ElectronicEducationEnviromentModel.Grade" />
+    <EntitySet Name="GroupMembers" EntityType="ElectronicEducationEnviromentModel.GroupMember" />
+    <EntitySet Name="Groups" EntityType="ElectronicEducationEnviromentModel.Group" />
+    <EntitySet Name="LectureAccesses" EntityType="ElectronicEducationEnviromentModel.LectureAccess" />
+    <EntitySet Name="Lectures" EntityType="ElectronicEducationEnviromentModel.Lecture" />
+    <EntitySet Name="Roles" EntityType="ElectronicEducationEnviromentModel.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="ElectronicEducationEnviromentModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="ElectronicEducationEnviromentModel.User" />
+    <AssociationSet Name="FK__Assignmen__IdAss__03F0984C" Association="ElectronicEducationEnviromentModel.FK__Assignmen__IdAss__03F0984C">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="AssignmentAnswer" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__IdStu__04E4BC85" Association="ElectronicEducationEnviromentModel.FK__Assignmen__IdStu__04E4BC85">
+      <End Role="User" EntitySet="Users" />
+      <End Role="AssignmentAnswer" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentFile_AssignmentAnswers" Association="ElectronicEducationEnviromentModel.FK_AssignmentFile_AssignmentAnswers">
+      <End Role="AssignmentAnswer" EntitySet="AssignmentAnswers" />
+      <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__IdGro__00200768" Association="ElectronicEducationEnviromentModel.FK__Assignmen__IdGro__00200768">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Assignment" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__IdAssign__08B54D69" Association="ElectronicEducationEnviromentModel.FK__Grades__IdAssign__08B54D69">
+      <End Role="Assignment" EntitySet="Assignments" />
+      <End Role="Grade" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__IdCou__71D1E811" Association="ElectronicEducationEnviromentModel.FK__CoursePar__IdCou__71D1E811">
+      <End Role="Cours" EntitySet="Courses" />
+      <End Role="CourseParticipant" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__IdGro__72C60C4A" Association="ElectronicEducationEnviromentModel.FK__CoursePar__IdGro__72C60C4A">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="CourseParticipant" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseTea__IdCou__0D7A0286" Association="ElectronicEducationEnviromentModel.FK__CourseTea__IdCou__0D7A0286">
+      <End Role="Cours" EntitySet="Courses" />
+      <End Role="CourseTeacher" EntitySet="CourseTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lectures_Courses" Association="ElectronicEducationEnviromentModel.FK_Lectures_Courses">
+      <End Role="Cours" EntitySet="Courses" />
+      <End Role="Lecture" EntitySet="Lectures" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseTea__IdTea__0E6E26BF" Association="ElectronicEducationEnviromentModel.FK__CourseTea__IdTea__0E6E26BF">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CourseTeacher" EntitySet="CourseTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__IdStuden__09A971A2" Association="ElectronicEducationEnviromentModel.FK__Grades__IdStuden__09A971A2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Grade" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__IdGro__75A278F5" Association="ElectronicEducationEnviromentModel.FK__GroupMemb__IdGro__75A278F5">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="GroupMember" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__IdStu__76969D2E" Association="ElectronicEducationEnviromentModel.FK__GroupMemb__IdStu__76969D2E">
+      <End Role="User" EntitySet="Users" />
+      <End Role="GroupMember" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LectureAc__IdGro__7C4F7684" Association="ElectronicEducationEnviromentModel.FK__LectureAc__IdGro__7C4F7684">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="LectureAccess" EntitySet="LectureAccesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LectureAc__IdLec__7B5B524B" Association="ElectronicEducationEnviromentModel.FK__LectureAc__IdLec__7B5B524B">
+      <End Role="Lecture" EntitySet="Lectures" />
+      <End Role="LectureAccess" EntitySet="LectureAccesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__IdRole__693CA210" Association="ElectronicEducationEnviromentModel.FK__Users__IdRole__693CA210">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="AssignmentAnswer">
+    <Key>
+      <PropertyRef Name="IdAnswer" />
+    </Key>
+    <Property Name="IdAnswer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAssignment" Type="Int32" Nullable="false" />
+    <Property Name="IdStudent" Type="Int32" Nullable="false" />
+    <Property Name="IdTeacher" Type="Int32" />
+    <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SubmissionDate" Type="DateTime" Precision="3" />
+    <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Assignment" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdAss__03F0984C" FromRole="AssignmentAnswer" ToRole="Assignment" />
+    <NavigationProperty Name="User" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdStu__04E4BC85" FromRole="AssignmentAnswer" ToRole="User" />
+    <NavigationProperty Name="AssignmentFiles" Relationship="ElectronicEducationEnviromentModel.FK_AssignmentFile_AssignmentAnswers" FromRole="AssignmentAnswer" ToRole="AssignmentFile" />
+  </EntityType>
+  <EntityType Name="AssignmentFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAssignmentAnswer" Type="Int32" Nullable="false" />
+    <Property Name="OriginalFileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StoredFileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AssignmentAnswer" Relationship="ElectronicEducationEnviromentModel.FK_AssignmentFile_AssignmentAnswers" FromRole="AssignmentFile" ToRole="AssignmentAnswer" />
+  </EntityType>
+  <EntityType Name="Assignment">
+    <Key>
+      <PropertyRef Name="IdAssignment" />
+    </Key>
+    <Property Name="IdAssignment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssignmentTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AssignmentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IdGroup" Type="Int32" Nullable="false" />
+    <Property Name="IdCourse" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AssignmentAnswers" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdAss__03F0984C" FromRole="Assignment" ToRole="AssignmentAnswer" />
+    <NavigationProperty Name="Group" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdGro__00200768" FromRole="Assignment" ToRole="Group" />
+    <NavigationProperty Name="Grades" Relationship="ElectronicEducationEnviromentModel.FK__Grades__IdAssign__08B54D69" FromRole="Assignment" ToRole="Grade" />
+  </EntityType>
+  <EntityType Name="CourseParticipant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCourse" Type="Int32" Nullable="false" />
+    <Property Name="IdGroup" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="ElectronicEducationEnviromentModel.FK__CoursePar__IdCou__71D1E811" FromRole="CourseParticipant" ToRole="Cours" />
+    <NavigationProperty Name="Group" Relationship="ElectronicEducationEnviromentModel.FK__CoursePar__IdGro__72C60C4A" FromRole="CourseParticipant" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="IdCourse" />
+    </Key>
+    <Property Name="IdCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CourseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseParticipants" Relationship="ElectronicEducationEnviromentModel.FK__CoursePar__IdCou__71D1E811" FromRole="Cours" ToRole="CourseParticipant" />
+    <NavigationProperty Name="CourseTeachers" Relationship="ElectronicEducationEnviromentModel.FK__CourseTea__IdCou__0D7A0286" FromRole="Cours" ToRole="CourseTeacher" />
+    <NavigationProperty Name="Lectures" Relationship="ElectronicEducationEnviromentModel.FK_Lectures_Courses" FromRole="Cours" ToRole="Lecture" />
+  </EntityType>
+  <EntityType Name="CourseTeacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCourse" Type="Int32" Nullable="false" />
+    <Property Name="IdTeacher" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="ElectronicEducationEnviromentModel.FK__CourseTea__IdCou__0D7A0286" FromRole="CourseTeacher" ToRole="Cours" />
+    <NavigationProperty Name="User" Relationship="ElectronicEducationEnviromentModel.FK__CourseTea__IdTea__0E6E26BF" FromRole="CourseTeacher" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="IdAssignment" />
+      <PropertyRef Name="IdStudent" />
+    </Key>
+    <Property Name="IdAssignment" Type="Int32" Nullable="false" />
+    <Property Name="IdStudent" Type="Int32" Nullable="false" />
+    <Property Name="Grade1" Type="Decimal" Precision="5" Scale="1" />
+    <NavigationProperty Name="Assignment" Relationship="ElectronicEducationEnviromentModel.FK__Grades__IdAssign__08B54D69" FromRole="Grade" ToRole="Assignment" />
+    <NavigationProperty Name="User" Relationship="ElectronicEducationEnviromentModel.FK__Grades__IdStuden__09A971A2" FromRole="Grade" ToRole="User" />
+  </EntityType>
+  <EntityType Name="GroupMember">
+    <Key>
+      <PropertyRef Name="idGroupMember" />
+    </Key>
+    <Property Name="idGroupMember" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdGroup" Type="Int32" Nullable="false" />
+    <Property Name="IdStudent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="ElectronicEducationEnviromentModel.FK__GroupMemb__IdGro__75A278F5" FromRole="GroupMember" ToRole="Group" />
+    <NavigationProperty Name="User" Relationship="ElectronicEducationEnviromentModel.FK__GroupMemb__IdStu__76969D2E" FromRole="GroupMember" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="IdGroup" />
+    </Key>
+    <Property Name="IdGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Assignments" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdGro__00200768" FromRole="Group" ToRole="Assignment" />
+    <NavigationProperty Name="CourseParticipants" Relationship="ElectronicEducationEnviromentModel.FK__CoursePar__IdGro__72C60C4A" FromRole="Group" ToRole="CourseParticipant" />
+    <NavigationProperty Name="GroupMembers" Relationship="ElectronicEducationEnviromentModel.FK__GroupMemb__IdGro__75A278F5" FromRole="Group" ToRole="GroupMember" />
+    <NavigationProperty Name="LectureAccesses" Relationship="ElectronicEducationEnviromentModel.FK__LectureAc__IdGro__7C4F7684" FromRole="Group" ToRole="LectureAccess" />
+  </EntityType>
+  <EntityType Name="LectureAccess">
+    <Key>
+      <PropertyRef Name="IdAcces" />
+    </Key>
+    <Property Name="IdAcces" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdLecture" Type="Int32" Nullable="false" />
+    <Property Name="IdGroup" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="ElectronicEducationEnviromentModel.FK__LectureAc__IdGro__7C4F7684" FromRole="LectureAccess" ToRole="Group" />
+    <NavigationProperty Name="Lecture" Relationship="ElectronicEducationEnviromentModel.FK__LectureAc__IdLec__7B5B524B" FromRole="LectureAccess" ToRole="Lecture" />
+  </EntityType>
+  <EntityType Name="Lecture">
+    <Key>
+      <PropertyRef Name="IdLecture" />
+    </Key>
+    <Property Name="IdLecture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LectureTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LectureText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idCource" Type="Int32" />
+    <NavigationProperty Name="Cours" Relationship="ElectronicEducationEnviromentModel.FK_Lectures_Courses" FromRole="Lecture" ToRole="Cours" />
+    <NavigationProperty Name="LectureAccesses" Relationship="ElectronicEducationEnviromentModel.FK__LectureAc__IdLec__7B5B524B" FromRole="Lecture" ToRole="LectureAccess" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="IdRole" />
+    </Key>
+    <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="ElectronicEducationEnviromentModel.FK__Users__IdRole__693CA210" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AssignmentAnswers" Relationship="ElectronicEducationEnviromentModel.FK__Assignmen__IdStu__04E4BC85" FromRole="User" ToRole="AssignmentAnswer" />
+    <NavigationProperty Name="CourseTeachers" Relationship="ElectronicEducationEnviromentModel.FK__CourseTea__IdTea__0E6E26BF" FromRole="User" ToRole="CourseTeacher" />
+    <NavigationProperty Name="Grades" Relationship="ElectronicEducationEnviromentModel.FK__Grades__IdStuden__09A971A2" FromRole="User" ToRole="Grade" />
+    <NavigationProperty Name="GroupMembers" Relationship="ElectronicEducationEnviromentModel.FK__GroupMemb__IdStu__76969D2E" FromRole="User" ToRole="GroupMember" />
+    <NavigationProperty Name="Role" Relationship="ElectronicEducationEnviromentModel.FK__Users__IdRole__693CA210" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK__Assignmen__IdAss__03F0984C">
+    <End Type="ElectronicEducationEnviromentModel.Assignment" Role="Assignment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.AssignmentAnswer" Role="AssignmentAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="IdAssignment" />
+      </Principal>
+      <Dependent Role="AssignmentAnswer">
+        <PropertyRef Name="IdAssignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__IdStu__04E4BC85">
+    <End Type="ElectronicEducationEnviromentModel.User" Role="User" Multiplicity="1" />
+    <End Type="ElectronicEducationEnviromentModel.AssignmentAnswer" Role="AssignmentAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="AssignmentAnswer">
+        <PropertyRef Name="IdStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentFile_AssignmentAnswers">
+    <End Type="ElectronicEducationEnviromentModel.AssignmentAnswer" Role="AssignmentAnswer" Multiplicity="1" />
+    <End Type="ElectronicEducationEnviromentModel.AssignmentFile" Role="AssignmentFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssignmentAnswer">
+        <PropertyRef Name="IdAnswer" />
+      </Principal>
+      <Dependent Role="AssignmentFile">
+        <PropertyRef Name="IdAssignmentAnswer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__IdGro__00200768">
+    <End Type="ElectronicEducationEnviromentModel.Group" Role="Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.Assignment" Role="Assignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="IdGroup" />
+      </Principal>
+      <Dependent Role="Assignment">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__IdAssign__08B54D69">
+    <End Type="ElectronicEducationEnviromentModel.Assignment" Role="Assignment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.Grade" Role="Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignment">
+        <PropertyRef Name="IdAssignment" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="IdAssignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__IdCou__71D1E811">
+    <End Type="ElectronicEducationEnviromentModel.Cours" Role="Cours" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.CourseParticipant" Role="CourseParticipant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="IdCourse" />
+      </Principal>
+      <Dependent Role="CourseParticipant">
+        <PropertyRef Name="IdCourse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__IdGro__72C60C4A">
+    <End Type="ElectronicEducationEnviromentModel.Group" Role="Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.CourseParticipant" Role="CourseParticipant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="IdGroup" />
+      </Principal>
+      <Dependent Role="CourseParticipant">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseTea__IdCou__0D7A0286">
+    <End Type="ElectronicEducationEnviromentModel.Cours" Role="Cours" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.CourseTeacher" Role="CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="IdCourse" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="IdCourse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lectures_Courses">
+    <End Type="ElectronicEducationEnviromentModel.Cours" Role="Cours" Multiplicity="0..1" />
+    <End Type="ElectronicEducationEnviromentModel.Lecture" Role="Lecture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="IdCourse" />
+      </Principal>
+      <Dependent Role="Lecture">
+        <PropertyRef Name="idCource" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseTea__IdTea__0E6E26BF">
+    <End Type="ElectronicEducationEnviromentModel.User" Role="User" Multiplicity="1" />
+    <End Type="ElectronicEducationEnviromentModel.CourseTeacher" Role="CourseTeacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="CourseTeacher">
+        <PropertyRef Name="IdTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__IdStuden__09A971A2">
+    <End Type="ElectronicEducationEnviromentModel.User" Role="User" Multiplicity="1" />
+    <End Type="ElectronicEducationEnviromentModel.Grade" Role="Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Grade">
+        <PropertyRef Name="IdStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__IdGro__75A278F5">
+    <End Type="ElectronicEducationEnviromentModel.Group" Role="Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.GroupMember" Role="GroupMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="IdGroup" />
+      </Principal>
+      <Dependent Role="GroupMember">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__IdStu__76969D2E">
+    <End Type="ElectronicEducationEnviromentModel.User" Role="User" Multiplicity="1" />
+    <End Type="ElectronicEducationEnviromentModel.GroupMember" Role="GroupMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="GroupMember">
+        <PropertyRef Name="IdStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LectureAc__IdGro__7C4F7684">
+    <End Type="ElectronicEducationEnviromentModel.Group" Role="Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.LectureAccess" Role="LectureAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="IdGroup" />
+      </Principal>
+      <Dependent Role="LectureAccess">
+        <PropertyRef Name="IdGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LectureAc__IdLec__7B5B524B">
+    <End Type="ElectronicEducationEnviromentModel.Lecture" Role="Lecture" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.LectureAccess" Role="LectureAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecture">
+        <PropertyRef Name="IdLecture" />
+      </Principal>
+      <Dependent Role="LectureAccess">
+        <PropertyRef Name="IdLecture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__IdRole__693CA210">
+    <End Type="ElectronicEducationEnviromentModel.Role" Role="Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ElectronicEducationEnviromentModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="IdRole" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

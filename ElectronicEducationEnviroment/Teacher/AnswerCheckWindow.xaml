@@ -1,0 +1,28 @@
+﻿<Window x:Class="ElectronicEducationEnviroment.Teacher.AnswerCheckWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Проверка ответов" Height="450" Width="600" Background="#fafafa">
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock x:Name="StudentNameText" FontSize="18" FontWeight="Bold" Margin="0 0 0 10"/>
+            <TextBlock Text="Ответ студента:" FontWeight="SemiBold"/>
+            <ScrollViewer Height="150" Margin="0 5 0 10">
+                <TextBlock x:Name="AnswerText" TextWrapping="Wrap" FontSize="16"/>
+            </ScrollViewer>
+
+            <TextBlock Text="Прикреплённые файлы:" FontWeight="SemiBold" Margin="0,5,0,2"/>
+            <StackPanel x:Name="FilesPanel" Margin="0,0,0,10">
+                <TextBlock x:Name="NoFilesText" Text="Файл не прикреплён" Foreground="Gray"/>
+            </StackPanel>
+
+            <TextBlock Text="Оцените работу:" FontWeight="SemiBold" Margin="0 0 0 5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="1" Click="Rate_Click" Tag="1" Width="40" Margin="5"/>
+                <Button Content="2" Click="Rate_Click" Tag="2" Width="40" Margin="5"/>
+                <Button Content="3" Click="Rate_Click" Tag="3" Width="40" Margin="5"/>
+                <Button Content="4" Click="Rate_Click" Tag="4" Width="40" Margin="5"/>
+                <Button Content="5" Click="Rate_Click" Tag="5" Width="40" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

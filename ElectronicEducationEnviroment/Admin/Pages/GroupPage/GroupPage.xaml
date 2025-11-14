@@ -1,0 +1,26 @@
+﻿<Page x:Class="ElectronicEducationEnviroment.Admin.Pages.GroupPage.GroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ElectronicEducationEnviroment.Admin.Pages.GroupPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Управление группами" >
+
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
+            <Button Content="Добавить группу" Click="AddGroup_Click" Margin="0 5 0 0" Width="130"/>
+            <Button Content="Редактировать состав" Click="EditGroup_Click" Margin="10 5 0 0" Width="150"/>
+            <Button Content="Удалить группу" Click="DeleteGroup_Click" Margin="10 5 0 0" Width="130"/>
+        </StackPanel>
+
+        <DataGrid x:Name="GroupsGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdGroup}" Width="Auto"/>
+                <DataGridTextColumn Header="Код группы" Binding="{Binding GroupCode}" Width="*"/>
+                <DataGridTextColumn Header="Кол-во студентов" Binding="{Binding StudentCount}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Page>

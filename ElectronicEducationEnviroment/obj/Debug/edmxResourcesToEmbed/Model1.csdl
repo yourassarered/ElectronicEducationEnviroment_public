@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EEEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EEEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AssignmentAnswers" EntityType="EEEModel.AssignmentAnswers" />
+    <EntitySet Name="Assignments" EntityType="EEEModel.Assignments" />
+    <EntitySet Name="CourseParticipants" EntityType="EEEModel.CourseParticipants" />
+    <EntitySet Name="Courses" EntityType="EEEModel.Courses" />
+    <EntitySet Name="Grades" EntityType="EEEModel.Grades" />
+    <EntitySet Name="Groups" EntityType="EEEModel.Groups" />
+    <EntitySet Name="Lectures" EntityType="EEEModel.Lectures" />
+    <EntitySet Name="Roles" EntityType="EEEModel.Roles" />
+    <EntitySet Name="Users" EntityType="EEEModel.Users" />
+    <AssociationSet Name="FK__Assignmen__id_as__45BE5BA9" Association="EEEModel.FK__Assignmen__id_as__45BE5BA9">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="AssignmentAnswers" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__id_st__46B27FE2" Association="EEEModel.FK__Assignmen__id_st__46B27FE2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AssignmentAnswers" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__id_gr__41EDCAC5" Association="EEEModel.FK__Assignmen__id_gr__41EDCAC5">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__id_assig__4A8310C6" Association="EEEModel.FK__Grades__id_assig__4A8310C6">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__id_co__339FAB6E" Association="EEEModel.FK__CoursePar__id_co__339FAB6E">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="CourseParticipants" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__id_gr__3493CFA7" Association="EEEModel.FK__CoursePar__id_gr__3493CFA7">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="CourseParticipants" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__id_stude__4B7734FF" Association="EEEModel.FK__Grades__id_stude__4B7734FF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__id_role__2B0A656D" Association="EEEModel.FK__Users__id_role__2B0A656D">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="CourseTeachers" Association="EEEModel.CourseTeachers">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="GroupMembers" Association="EEEModel.GroupMembers">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="LectureAccess" Association="EEEModel.LectureAccess">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Lectures" EntitySet="Lectures" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AssignmentAnswers">
+    <Key>
+      <PropertyRef Name="id_answer" />
+    </Key>
+    <Property Name="id_answer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_assignment" Type="Int32" Nullable="false" />
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="id_teacher" Type="Int32" />
+    <Property Name="answer_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="submission_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Assignments" Relationship="EEEModel.FK__Assignmen__id_as__45BE5BA9" FromRole="AssignmentAnswers" ToRole="Assignments" />
+    <NavigationProperty Name="Users" Relationship="EEEModel.FK__Assignmen__id_st__46B27FE2" FromRole="AssignmentAnswers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="id_assignment" />
+    </Key>
+    <Property Name="id_assignment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="assignment_title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="assignment_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="open_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_group" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AssignmentAnswers" Relationship="EEEModel.FK__Assignmen__id_as__45BE5BA9" FromRole="Assignments" ToRole="AssignmentAnswers" />
+    <NavigationProperty Name="Groups" Relationship="EEEModel.FK__Assignmen__id_gr__41EDCAC5" FromRole="Assignments" ToRole="Groups" />
+    <NavigationProperty Name="Grades" Relationship="EEEModel.FK__Grades__id_assig__4A8310C6" FromRole="Assignments" ToRole="Grades" />
+  </EntityType>
+  <EntityType Name="CourseParticipants">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="id_group" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="EEEModel.FK__CoursePar__id_co__339FAB6E" FromRole="CourseParticipants" ToRole="Courses" />
+    <NavigationProperty Name="Groups" Relationship="EEEModel.FK__CoursePar__id_gr__3493CFA7" FromRole="CourseParticipants" ToRole="Groups" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id_course" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="course_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseParticipants" Relationship="EEEModel.FK__CoursePar__id_co__339FAB6E" FromRole="Courses" ToRole="CourseParticipants" />
+    <NavigationProperty Name="Users" Relationship="EEEModel.CourseTeachers" FromRole="Courses" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="id_assignment" />
+      <PropertyRef Name="id_student" />
+    </Key>
+    <Property Name="id_assignment" Type="Int32" Nullable="false" />
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="grade" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="Assignments" Relationship="EEEModel.FK__Grades__id_assig__4A8310C6" FromRole="Grades" ToRole="Assignments" />
+    <NavigationProperty Name="Users" Relationship="EEEModel.FK__Grades__id_stude__4B7734FF" FromRole="Grades" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Assignments" Relationship="EEEModel.FK__Assignmen__id_gr__41EDCAC5" FromRole="Groups" ToRole="Assignments" />
+    <NavigationProperty Name="CourseParticipants" Relationship="EEEModel.FK__CoursePar__id_gr__3493CFA7" FromRole="Groups" ToRole="CourseParticipants" />
+    <NavigationProperty Name="Users" Relationship="EEEModel.GroupMembers" FromRole="Groups" ToRole="Users" />
+    <NavigationProperty Name="Lectures" Relationship="EEEModel.LectureAccess" FromRole="Groups" ToRole="Lectures" />
+  </EntityType>
+  <EntityType Name="Lectures">
+    <Key>
+      <PropertyRef Name="id_lecture" />
+    </Key>
+    <Property Name="id_lecture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lecture_title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="lecture_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Groups" Relationship="EEEModel.LectureAccess" FromRole="Lectures" ToRole="Groups" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="EEEModel.FK__Users__id_role__2B0A656D" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="middle_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AssignmentAnswers" Relationship="EEEModel.FK__Assignmen__id_st__46B27FE2" FromRole="Users" ToRole="AssignmentAnswers" />
+    <NavigationProperty Name="Grades" Relationship="EEEModel.FK__Grades__id_stude__4B7734FF" FromRole="Users" ToRole="Grades" />
+    <NavigationProperty Name="Roles" Relationship="EEEModel.FK__Users__id_role__2B0A656D" FromRole="Users" ToRole="Roles" />
+    <NavigationProperty Name="Courses" Relationship="EEEModel.CourseTeachers" FromRole="Users" ToRole="Courses" />
+    <NavigationProperty Name="Groups" Relationship="EEEModel.GroupMembers" FromRole="Users" ToRole="Groups" />
+  </EntityType>
+  <Association Name="FK__Assignmen__id_as__45BE5BA9">
+    <End Type="EEEModel.Assignments" Role="Assignments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.AssignmentAnswers" Role="AssignmentAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="id_assignment" />
+      </Principal>
+      <Dependent Role="AssignmentAnswers">
+        <PropertyRef Name="id_assignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__id_st__46B27FE2">
+    <End Type="EEEModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="EEEModel.AssignmentAnswers" Role="AssignmentAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="AssignmentAnswers">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__id_gr__41EDCAC5">
+    <End Type="EEEModel.Groups" Role="Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.Assignments" Role="Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__id_assig__4A8310C6">
+    <End Type="EEEModel.Assignments" Role="Assignments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.Grades" Role="Grades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="id_assignment" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="id_assignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__id_co__339FAB6E">
+    <End Type="EEEModel.Courses" Role="Courses" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.CourseParticipants" Role="CourseParticipants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="id_course" />
+      </Principal>
+      <Dependent Role="CourseParticipants">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__id_gr__3493CFA7">
+    <End Type="EEEModel.Groups" Role="Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.CourseParticipants" Role="CourseParticipants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="CourseParticipants">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__id_stude__4B7734FF">
+    <End Type="EEEModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="EEEModel.Grades" Role="Grades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__id_role__2B0A656D">
+    <End Type="EEEModel.Roles" Role="Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EEEModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourseTeachers">
+    <End Type="EEEModel.Courses" Role="Courses" Multiplicity="*" />
+    <End Type="EEEModel.Users" Role="Users" Multiplicity="*" />
+  </Association>
+  <Association Name="GroupMembers">
+    <End Type="EEEModel.Groups" Role="Groups" Multiplicity="*" />
+    <End Type="EEEModel.Users" Role="Users" Multiplicity="*" />
+  </Association>
+  <Association Name="LectureAccess">
+    <End Type="EEEModel.Groups" Role="Groups" Multiplicity="*" />
+    <End Type="EEEModel.Lectures" Role="Lectures" Multiplicity="*" />
+  </Association>
+</Schema>

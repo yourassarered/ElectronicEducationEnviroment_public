@@ -1,0 +1,30 @@
+﻿<Window x:Class="ElectronicEducationEnviroment.Admin.Pages.GroupPage.GroupEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectronicEducationEnviroment.Admin.Pages.GroupPage"
+        mc:Ignorable="d"
+      Title="Редактировать состав группы" Height="400" Width="400">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Состав группы:" FontWeight="Bold"/>
+            <ListBox x:Name="CurrentList" DisplayMemberPath="FullName" SelectionMode="Extended" Height="250"/>
+            <Button Content="Удалить выбранных" Click="Remove_Click" Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Доступные студенты:" FontWeight="Bold"/>
+            <ListBox x:Name="AvailableList" DisplayMemberPath="FullName" SelectionMode="Extended" Height="250"/>
+            <Button Content="Добавить выбранных" Click="Add_Click" Margin="0 10 0 0"/>
+        </StackPanel>
+
+        <Button Content="Закрыть" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Click="Close_Click" Margin="0 10 10 0"/>
+    </Grid>
+</Window>

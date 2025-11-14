@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Markdown.Wpf.Editor</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "M:Markdown.Wpf.Editor.MarkdownEditor.UpdateButton_Click(System.Object,System.Windows.RoutedEventArgs)" -->
+        <member name="P:Markdown.Wpf.Editor.MarkdownEditor.Text">
+            <summary>
+            Raw text. 
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.MarkdownEditor.AutoUpdate">
+            <summary>
+            Specifies if markdown should be updated automatically in specified <see cref="P:Markdown.Wpf.Editor.MarkdownEditor.AutoUpdateInterval"/>. 
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.MarkdownEditor.AutoUpdateInterval">
+            <summary>
+            Interval in ms for updating markdown view. Applies only if <see cref="P:Markdown.Wpf.Editor.MarkdownEditor.AutoUpdate"/> is set to true and also the interval is more than 500.
+            Default is 5000 ms.
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.MarkdownEditor.Hyperlink">
+            <summary>
+            Run action on click on a Hyperlink.
+            Link will come as string from command-parameter element
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.MarkdownEditor.EditorBackground">
+            <summary>
+            Background property for input field. Markdown view background can be set with background property.
+            </summary>
+        </member>
+        <member name="M:Markdown.Wpf.Editor.MarkdownEditor.CreateProgressTimer">
+            <summary>
+            This Timer update ProgressBar
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Markdown.Wpf.Editor.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Markdown.Wpf.Editor.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

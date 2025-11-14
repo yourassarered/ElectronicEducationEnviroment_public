@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище EEEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AssignmentAnswers">
+    <Key>
+      <PropertyRef Name="id_answer" />
+    </Key>
+    <Property Name="id_answer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_assignment" Type="int" Nullable="false" />
+    <Property Name="id_student" Type="int" Nullable="false" />
+    <Property Name="id_teacher" Type="int" />
+    <Property Name="answer_text" Type="nvarchar(max)" />
+    <Property Name="submission_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="id_assignment" />
+    </Key>
+    <Property Name="id_assignment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="assignment_title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="assignment_text" Type="nvarchar(max)" />
+    <Property Name="open_date" Type="date" Nullable="false" />
+    <Property Name="due_date" Type="date" Nullable="false" />
+    <Property Name="id_group" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseParticipants">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_group" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id_course" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="course_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="course_description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CourseTeachers">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_teacher" />
+    </Key>
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_teacher" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="id_assignment" />
+      <PropertyRef Name="id_student" />
+    </Key>
+    <Property Name="id_assignment" Type="int" Nullable="false" />
+    <Property Name="id_student" Type="int" Nullable="false" />
+    <Property Name="grade" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="GroupMembers">
+    <Key>
+      <PropertyRef Name="id_group" />
+      <PropertyRef Name="id_student" />
+    </Key>
+    <Property Name="id_group" Type="int" Nullable="false" />
+    <Property Name="id_student" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="group_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LectureAccess">
+    <Key>
+      <PropertyRef Name="id_lecture" />
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_lecture" Type="int" Nullable="false" />
+    <Property Name="id_group" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lectures">
+    <Key>
+      <PropertyRef Name="id_lecture" />
+    </Key>
+    <Property Name="id_lecture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lecture_title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="lecture_text" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="middle_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone_number" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Assignmen__id_as__45BE5BA9">
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AssignmentAnswers" Type="Self.AssignmentAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="id_assignment" />
+      </Principal>
+      <Dependent Role="AssignmentAnswers">
+        <PropertyRef Name="id_assignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__id_gr__41EDCAC5">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignmen__id_st__46B27FE2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="AssignmentAnswers" Type="Self.AssignmentAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="AssignmentAnswers">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__id_co__339FAB6E">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseParticipants" Type="Self.CourseParticipants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="id_course" />
+      </Principal>
+      <Dependent Role="CourseParticipants">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CoursePar__id_gr__3493CFA7">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseParticipants" Type="Self.CourseParticipants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="CourseParticipants">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseTea__id_co__4F47C5E3">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseTeachers" Type="Self.CourseTeachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="id_course" />
+      </Principal>
+      <Dependent Role="CourseTeachers">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CourseTea__id_te__503BEA1C">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CourseTeachers" Type="Self.CourseTeachers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="CourseTeachers">
+        <PropertyRef Name="id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__id_assig__4A8310C6">
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="id_assignment" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="id_assignment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Grades__id_stude__4B7734FF">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Grades" Type="Self.Grades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="Grades">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__id_gr__37703C52">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="GroupMembers">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__id_st__3864608B">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="GroupMembers">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LectureAc__id_gr__3E1D39E1">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LectureAccess" Type="Self.LectureAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="LectureAccess">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LectureAc__id_le__3D2915A8">
+    <End Role="Lectures" Type="Self.Lectures" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LectureAccess" Type="Self.LectureAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lectures">
+        <PropertyRef Name="id_lecture" />
+      </Principal>
+      <Dependent Role="LectureAccess">
+        <PropertyRef Name="id_lecture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__id_role__2B0A656D">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id_role" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище EEEModelContainer">
+    <EntitySet Name="AssignmentAnswers" EntityType="Self.AssignmentAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseParticipants" EntityType="Self.CourseParticipants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseTeachers" EntityType="Self.CourseTeachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupMembers" EntityType="Self.GroupMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LectureAccess" EntityType="Self.LectureAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lectures" EntityType="Self.Lectures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Assignmen__id_as__45BE5BA9" Association="Self.FK__Assignmen__id_as__45BE5BA9">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="AssignmentAnswers" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__id_gr__41EDCAC5" Association="Self.FK__Assignmen__id_gr__41EDCAC5">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignmen__id_st__46B27FE2" Association="Self.FK__Assignmen__id_st__46B27FE2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AssignmentAnswers" EntitySet="AssignmentAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__id_co__339FAB6E" Association="Self.FK__CoursePar__id_co__339FAB6E">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="CourseParticipants" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CoursePar__id_gr__3493CFA7" Association="Self.FK__CoursePar__id_gr__3493CFA7">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="CourseParticipants" EntitySet="CourseParticipants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseTea__id_co__4F47C5E3" Association="Self.FK__CourseTea__id_co__4F47C5E3">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="CourseTeachers" EntitySet="CourseTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CourseTea__id_te__503BEA1C" Association="Self.FK__CourseTea__id_te__503BEA1C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CourseTeachers" EntitySet="CourseTeachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__id_assig__4A8310C6" Association="Self.FK__Grades__id_assig__4A8310C6">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Grades__id_stude__4B7734FF" Association="Self.FK__Grades__id_stude__4B7734FF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Grades" EntitySet="Grades" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__id_gr__37703C52" Association="Self.FK__GroupMemb__id_gr__37703C52">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="GroupMembers" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__id_st__3864608B" Association="Self.FK__GroupMemb__id_st__3864608B">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="GroupMembers" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LectureAc__id_gr__3E1D39E1" Association="Self.FK__LectureAc__id_gr__3E1D39E1">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="LectureAccess" EntitySet="LectureAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LectureAc__id_le__3D2915A8" Association="Self.FK__LectureAc__id_le__3D2915A8">
+      <End Role="Lectures" EntitySet="Lectures" />
+      <End Role="LectureAccess" EntitySet="LectureAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__id_role__2B0A656D" Association="Self.FK__Users__id_role__2B0A656D">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

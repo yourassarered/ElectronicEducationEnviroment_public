@@ -1,0 +1,20 @@
+﻿ElectronicEducationEnviroment
+
+
+winexe
+C#
+.cs
+C:\Users\Иван Назаренко\source\repos\ElectronicEducationEnviroment\ElectronicEducationEnviroment\obj\Debug\
+ElectronicEducationEnviroment
+none
+false
+DEBUG;TRACE
+C:\Users\Иван Назаренко\source\repos\ElectronicEducationEnviroment\ElectronicEducationEnviroment\App.xaml
+22-2063300475
+5-668831866
+46-903516613
+42540177602
+Admin\Pages\CourcePage\AddEditProgramWindow.xaml;Admin\Pages\CourcePage\AssignGroupsWindow.xaml;Admin\Pages\CourcePage\AssignProgramsPage.xaml;Admin\Pages\CourcePage\AssignTeachersWindow.xaml;Admin\Pages\GroupPage\GroupAddWindow.xaml;Admin\Pages\GroupPage\GroupEditWindow.xaml;Admin\Pages\GroupPage\GroupPage.xaml;Admin\Pages\UserPage\EditUserWindow.xaml;Admin\Pages\UserPage\AddMultipleUsersWindow.xaml;Admin\AdminWindow.xaml;Admin\Pages\UserPage\UsersPage.xaml;AuthWindow.xaml;Student\CourseListPage.xaml;Student\StudentWindow.xaml;Student\TaskViewPage.xaml;Teacher\AnswerCheckWindow.xaml;Teacher\AssignmentEditorWindow.xaml;Teacher\CourseContentPage.xaml;Teacher\LectureAccessWindow.xaml;Teacher\LectureEditorWindow.xaml;Student\LectureViewPage.xaml;Teacher\TeacherWindow.xaml;
+
+True
+

@@ -1,0 +1,39 @@
+﻿<Window x:Class="ElectronicEducationEnviroment.Admin.Pages.CourcePage.AssignGroupsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectronicEducationEnviroment.Admin.Pages.CourcePage"
+        mc:Ignorable="d"
+        Title="Назначение групп" Height="500" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Назначенные группы:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <ListBox x:Name="AssignedGroupsList"
+                 Grid.Row="1"
+                 DisplayMemberPath="GroupCode"
+                 SelectionMode="Extended"
+                 BorderBrush="#ccc"
+                 BorderThickness="1" />
+
+        <Button Grid.Row="2" Content="Открепить выбранные группы" Height="35" Margin="0,10,0,10" Click="Unassign_Click"/>
+
+        <TextBlock Text="Доступные группы:" FontWeight="Bold" Grid.Row="3" Margin="0,5,0,5"/>
+        <ListBox x:Name="AvailableGroupsList"
+                 Grid.Row="3"
+                 Margin="0,25,0,0"
+                 DisplayMemberPath="GroupCode"
+                 SelectionMode="Extended"
+                 BorderBrush="#ccc"
+                 BorderThickness="1"/>
+
+        <Button Grid.Row="4" Content="Назначить выбранные группы" Height="35" Margin="0,10,0,0" Click="Assign_Click"/>
+    </Grid>
+</Window>

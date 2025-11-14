@@ -1,0 +1,40 @@
+﻿<Window x:Class="ElectronicEducationEnviroment.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectronicEducationEnviroment"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="280" Width="400" Cursor="">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <Label Content="Логин:"/>
+            <TextBox x:Name="TxtLogin" Width="200" HorizontalAlignment="Left"/>
+            <Label Content="Пароль:" Margin="0,10,0,0"/>
+            <PasswordBox x:Name="TxtPassword" Width="200" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <Button x:Name="BtnLogin" 
+                Grid.Row="1"
+                Content="Войти" 
+                Width="100"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Center"
+                Click="BtnLogin_Click"/>
+
+        <GroupBox Grid.Row="2" Header="Быстрый вход" Margin="0,20,0,0" Visibility="Visible">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+                <Button x:Name="AdminButton" Content="Админ" Width="80" Margin="5,0" Click="AdminButton_Click"/>
+                <Button x:Name="StudentButton" Content="Студент" Width="80" Margin="5,0" Click="StudentButton_Click"/>
+                <Button x:Name="TeacherButton" Content="Преподаватель" Margin="5,0" Click="TeacherButton_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
+
